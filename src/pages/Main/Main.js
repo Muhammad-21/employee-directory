@@ -1,13 +1,14 @@
 import React from 'react'
-import people from '../assets/img/people.jpg';
-import ava1 from '../assets/img/ava1.jpg';
-import ava2 from '../assets/img/ava2.jpg';
-import ava3 from '../assets/img/ava3.jpg';
-import ava4 from '../assets/img/ava4.jpg';
-import ava5 from '../assets/img/ava5.jpg';
-import ava6 from '../assets/img/ava6.jpg';
-import ava7 from '../assets/img/ava7.jpg';
+import people from '../../assets/img/people.jpg';
+import ava1 from '../../assets/img/ava1.jpg';
+import ava2 from '../../assets/img/ava2.jpg';
+import ava3 from '../../assets/img/ava3.jpg';
+import ava4 from '../../assets/img/ava4.jpg';
+import ava5 from '../../assets/img/ava5.jpg';
+import ava6 from '../../assets/img/ava6.jpg';
+import ava7 from '../../assets/img/ava7.jpg';
 import { Link } from 'react-router-dom';
+import './main.css';
 
 export default function Main() {
   return (

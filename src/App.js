@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import Lists from './pages/Lists';
-import Main from './pages/Main';
+import Lists from './pages/Lists/Lists';
+import Main from './pages/Main/Main';
 
 function App() {
   return (

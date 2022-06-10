@@ -1,0 +1,39 @@
+@import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+.content{
+  height: 100%;
+}
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 90px;
+  color: white;
+  background: #f7653b;
+}
+
+.site-background{ 
+  background: #f7653b;
+  color: white;
+  font-size: 20px;
+}
+
+.back{
+  font-size: 20px;
+  margin-top: 80%;
+  background: #e6f7ff;
+  padding: 15px;
+  cursor: pointer;
+}
+
+
