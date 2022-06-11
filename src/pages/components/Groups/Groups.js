@@ -7,7 +7,7 @@ import { useSelector,useDispatch } from 'react-redux';
 export default function Groups({users}) {
   const groups = useSelector(({groups}) => groups.items);
   const dispatch = useDispatch();
-
+console.log(users)
   useEffect(() =>{
     dispatch(fetchGroups());
   })
@@ -20,6 +20,9 @@ export default function Groups({users}) {
         </div>
       })
       }
+      <div className='item'>
+        <GroupTable groupName={"Без группы"} users={users.filter(user => user.groups === null)}/>
+      </div>
     </div>
   )
 }

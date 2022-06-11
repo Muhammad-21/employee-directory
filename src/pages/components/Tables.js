@@ -40,7 +40,7 @@ const columns = [
           }
           return (
             <Tag color={color} key={groups}>
-              {group.toUpperCase()}
+              {group ? group.toUpperCase() : "БЕЗ ГРУППЫ"}
             </Tag>
           );
         })}
@@ -62,8 +62,18 @@ const columns = [
         text:'Отдел маркетинга',
         value:'Отдел маркетинга'
       },
+      {
+        text:'Без группы',
+        value:null
+      },
     ],
-    onFilter: (value, record) => record.groups.indexOf(value) === 0,
+    onFilter: (value, record) => {
+      if(value === null){
+        return record.groups === null
+      }else{
+        return record.groups !== null && record.groups.indexOf(value) === 0
+      }
+    },
   },
   {
     title: 'Номер',

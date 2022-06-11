@@ -35,10 +35,6 @@ export default function Lists() {
   const debouncedSearchTerm = useDebounce(search,500)
 
   useEffect(() => {
-    dispatch(fetchUsers(sortName,debouncedSearchTerm))
-  },[])
-
-  useEffect(() => {
     if(debouncedSearchTerm){
       dispatch(fetchUsers(sortName,debouncedSearchTerm))
     }else{

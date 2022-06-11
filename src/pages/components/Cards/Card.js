@@ -11,7 +11,7 @@ export default function Card({data}) {
               </div>
               <div className="single_advisor_details_info">
                 <h6>{data.name}</h6>
-                <p className="designation">{data.groups}</p>
+                <p className="designation">{data.groups ? data.groups : "Без группы"}</p>
               </div>
             </div>
             </div>

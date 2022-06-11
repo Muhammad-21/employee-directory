@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import people from '../../assets/img/people.jpg';
 import ava1 from '../../assets/img/ava1.jpg';
 import ava2 from '../../assets/img/ava2.jpg';
@@ -8,9 +8,19 @@ import ava5 from '../../assets/img/ava5.jpg';
 import ava6 from '../../assets/img/ava6.jpg';
 import ava7 from '../../assets/img/ava7.jpg';
 import { Link } from 'react-router-dom';
+import { useSelector,useDispatch } from 'react-redux';
+import { fetchUsers } from '../../redux/actions/usersAC';
 import './main.css';
 
 export default function Main() {
+
+  const dispatch = useDispatch();
+  const itemsLength = useSelector(({users}) => users.items.length)
+  
+  useEffect(() => {
+    dispatch(fetchUsers('',''))
+  },[])
+
   return (
     <div className="container">
         <div className="body d-md-flex align-items-center justify-content-between">
@@ -46,7 +56,7 @@ export default function Main() {
                               <img src={ava7} alt="аватарка" width="40"/>
                             </div>
                             <div className='me-3'>
-                              <div className='others'><Link to="/lists"><div align="center">еще 293</div></Link></div>
+                              <div className='others'><Link to="/lists"><div align="center">еще {itemsLength - 7}</div></Link></div>
                             </div>
                         </div>
                         <div className="mt-3">
