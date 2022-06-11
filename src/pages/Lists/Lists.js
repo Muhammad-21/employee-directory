@@ -9,7 +9,7 @@ import {
   SearchOutlined,
 } from '@ant-design/icons';
 import './lists.css';
-import { Layout, Menu,Input} from 'antd';
+import { Layout, Menu,Input, Select} from 'antd';
 import { Link } from 'react-router-dom';
 import Tables from '../components/Tables';
 import Cards from '../components/Cards/Cards';
@@ -19,7 +19,9 @@ import { fetchUsers } from '../../redux/actions/usersAC';
 import useDebounce from '../../utils/useDebounce';
 import Loader from '../components/Loader';
 
+const { Option } = Select;
 const { Header, Sider, Content } = Layout;
+
 
 export default function Lists() {
 
@@ -29,19 +31,20 @@ export default function Lists() {
   const items = useSelector(({ users }) => users.items);
   const isLoading = useSelector(({ users }) => users.isLoading)
   const [search, setSearch] = useState('')
+  const [sortName,setSortName] = useState('ASC')
   const debouncedSearchTerm = useDebounce(search,500)
 
   useEffect(() => {
-    dispatch(fetchUsers('ASC',debouncedSearchTerm))
+    dispatch(fetchUsers(sortName,debouncedSearchTerm))
   },[])
 
   useEffect(() => {
     if(debouncedSearchTerm){
-      dispatch(fetchUsers('ASC',debouncedSearchTerm))
+      dispatch(fetchUsers(sortName,debouncedSearchTerm))
     }else{
-      dispatch(fetchUsers('ASC',''))
+      dispatch(fetchUsers(sortName,''))
     }
-  },[debouncedSearchTerm])
+  },[debouncedSearchTerm,sortName])
 
 
   const changeOption = (evt) => {
@@ -63,6 +66,10 @@ export default function Lists() {
   const handleSearch = (evt) => {
     setSearch(evt.target.value)
   }
+
+  const handleChange = (value) => {
+    setSortName(value)
+  };
 
   return (
     <Layout style={{height:"100vh"}}>
@@ -108,13 +115,31 @@ export default function Lists() {
           })}
           Справочник сотрудников
         </Header>
+
+        <div style={{display:"flex",justifyContent:"space-between",marginTop:"10px", marginLeft:"10px"}}>
         <Input 
-          style={{marginTop:"10px", marginLeft:"10px", width:"50%"}} 
+          style={{width:"70%"}} 
           placeholder="Поиск сотрудника" 
           prefix={<SearchOutlined />} 
           value={search}
           onChange={handleSearch}
         />
+        <div style={{marginRight:"40px",background:"white",paddingLeft:"10px"}}> 
+          сортировка имён
+        <Select
+          defaultValue="ASC"
+          style={{
+            marginLeft:"10px",
+            width: 150,
+          }}
+          onChange={handleChange}
+        >
+          <Option value="ASC">от А до Я</Option>
+          <Option value="DESC">от Я до А</Option>
+        </Select>
+        </div>
+        </div>
+
         <Content
           style={{
             padding: "9px 10px 0px 10px",
