@@ -142,7 +142,7 @@ export default function Lists() {
             minHeight: 280,
             height:"500px",
             overflow:"auto",
-            overflowX:"hidden"
+            overflow:"hidden"
           }}
         >
           {
