@@ -16,6 +16,7 @@ import Cards from '../components/Cards/Cards';
 import Groups from '../components/Groups';
 import { useSelector,useDispatch } from 'react-redux';
 import { fetchUsers } from '../../redux/actions/usersAC';
+import useDebounce from '../../utils/useDebounce';
 import Loader from '../components/Loader';
 
 const { Header, Sider, Content } = Layout;
@@ -27,10 +28,21 @@ export default function Lists() {
   const dispatch = useDispatch();
   const items = useSelector(({ users }) => users.items);
   const isLoading = useSelector(({ users }) => users.isLoading)
+  const [search, setSearch] = useState('')
+  const debouncedSearchTerm = useDebounce(search,500)
 
   useEffect(() => {
-    dispatch(fetchUsers('ASC'))
+    dispatch(fetchUsers('ASC',debouncedSearchTerm))
   },[])
+
+  useEffect(() => {
+    if(debouncedSearchTerm){
+      dispatch(fetchUsers('ASC',debouncedSearchTerm))
+    }else{
+      dispatch(fetchUsers('ASC',''))
+    }
+  },[debouncedSearchTerm])
+
 
   const changeOption = (evt) => {
     if(evt.key === '1'){
@@ -47,6 +59,10 @@ export default function Lists() {
   if(option === 'table') body = <Tables data={items}/>
   if(option === 'cards') body = <Cards data={items}/>
   if(option === 'groups') body =  <Groups/>
+
+  const handleSearch = (evt) => {
+    setSearch(evt.target.value)
+  }
 
   return (
     <Layout style={{height:"100vh"}}>
@@ -92,7 +108,13 @@ export default function Lists() {
           })}
           Справочник сотрудников
         </Header>
-        <Input style={{marginTop:"10px", marginLeft:"10px", width:"99%"}} placeholder="Поиск сотрудника" prefix={<SearchOutlined />} />
+        <Input 
+          style={{marginTop:"10px", marginLeft:"10px", width:"50%"}} 
+          placeholder="Поиск сотрудника" 
+          prefix={<SearchOutlined />} 
+          value={search}
+          onChange={handleSearch}
+        />
         <Content
           style={{
             padding: "9px 10px 0px 10px",
