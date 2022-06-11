@@ -13,9 +13,9 @@ export const setUsers = items => ({
 });
 
 
-export const fetchUsers = (sortName,name) => (dispatch) => {
+export const fetchUsers = (sortName,name,groupName='') => (dispatch) => {
     dispatch(setLoading(true));
-    EmployeeService.getUsers(sortName,name)
+    EmployeeService.getUsers(sortName,name,groupName)
     .then((data) => {
         dispatch(setUsers(data));
     })

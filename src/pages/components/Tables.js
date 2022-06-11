@@ -46,6 +46,24 @@ const columns = [
         })}
       </>
     ),
+    filters:[{
+      text:'Бухгалтерия',
+      value:'Бухгалтерия'
+      },
+      {
+        text:'Отдел кадров',
+        value:'Отдел кадров'
+      },
+      {
+        text:'Руководство',
+        value:'Руководство'
+      },
+      {
+        text:'Отдел маркетинга',
+        value:'Отдел маркетинга'
+      },
+    ],
+    onFilter: (value, record) => record.groups.indexOf(value) === 0,
   },
   {
     title: 'Номер',
@@ -53,48 +71,6 @@ const columns = [
     dataIndex: 'number',
   },
 ];
-// const data = [
-//   {
-//     key: '1',
-//     name: 'John Brown',
-//     account: 'companydomain/JohnBrown',
-//     email: 'JohnBrown@companydomain.com',
-//     groups: ['Бухгалтерия'],
-//     number:'+123(456)123-45-66',
-//   },
-//   {
-//     key: '2',
-//     name: 'Jim Green',
-//     account: 'companydomain/JimGreen',
-//     email: 'JimGreen@companydomain.com',
-//     groups: ['Руководство'],
-//     number:'+123(456)123-45-66',
-//   },
-//   {
-//     key: '3',
-//     name: 'Joe Black',
-//     account: 'companydomain/JoeBlack',
-//     email: 'JoeBlack@companydomain.com',
-//     groups: ['Отдел кадров'],
-//     number:'+123(456)123-45-66',
-//   },
-//   {
-//     key: '4',
-//     name: 'Joe Black',
-//     account: 'companydomain/JoeBlack',
-//     email: 'JoeBlack@companydomain.com',
-//     groups: ['не состоит в группе'],
-//     number:'+123(456)123-45-66',
-//   },
-//   {
-//     key: '5',
-//     name: 'Joe Black',
-//     account: 'companydomain/JoeBlack',
-//     email: 'JoeBlack@companydomain.com',
-//     groups: ['Отдел маркетинга'],
-//     number:'+123(456)123-45-66',
-//   },
-// ];
 
 const Tables = ({data}) => 
   <Table 
