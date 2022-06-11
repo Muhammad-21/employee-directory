@@ -30,10 +30,23 @@
 
 .back{
   font-size: 20px;
-  margin-top: 80%;
-  background: #e6f7ff;
+  margin-top: 90%;
+  background:#f7653b;
   padding: 15px;
   cursor: pointer;
+}
+
+.search{
+  margin-top: 10px;
+  margin-left: 10px; 
+  width:99%
+}
+
+@media (max-width:1200px) {
+.search{
+  width: 60%;
+}
+
 }
 
 
