@@ -13,7 +13,7 @@ import { Layout, Menu,Input, Select} from 'antd';
 import { Link } from 'react-router-dom';
 import Tables from '../components/Tables';
 import Cards from '../components/Cards/Cards';
-import Groups from '../components/Groups';
+import Groups from '../components/Groups/Groups';
 import { useSelector,useDispatch } from 'react-redux';
 import { fetchUsers } from '../../redux/actions/usersAC';
 import useDebounce from '../../utils/useDebounce';
@@ -61,7 +61,7 @@ export default function Lists() {
   let body = ''
   if(option === 'table') body = <Tables data={items}/>
   if(option === 'cards') body = <Cards data={items}/>
-  if(option === 'groups') body =  <Groups/>
+  if(option === 'groups') body =  <Groups users={items}/>
 
   const handleSearch = (evt) => {
     setSearch(evt.target.value)
