@@ -23,6 +23,11 @@ starting the database
 > node backend/server/server.js
 ```
 
+## Database scheme
+![databaseScheme](./databaseScheme.jpg) 
+
+
+
 ---
 
 
