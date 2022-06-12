@@ -7,17 +7,20 @@ import {
   IdcardOutlined,
   LeftOutlined,
   SearchOutlined,
+  PlusCircleOutlined
 } from '@ant-design/icons';
 import './lists.css';
 import { Layout, Menu,Input, Select} from 'antd';
 import { Link } from 'react-router-dom';
-import Tables from '../components/Tables';
-import Cards from '../components/Cards/Cards';
-import Groups from '../components/Groups/Groups';
+import Tables from '../../components/Tables';
+import Cards from '../../components/Cards/Cards';
+import Groups from '../../components/Groups/Groups';
 import { useSelector,useDispatch } from 'react-redux';
 import { fetchUsers } from '../../redux/actions/usersAC';
+import { fetchGroups } from '../../redux/actions/groupsAC';
 import useDebounce from '../../utils/useDebounce';
-import Loader from '../components/Loader';
+import Loader from '../../components/Loader';
+import Madal from '../../components/Madal';
 
 const { Option } = Select;
 const { Header, Sider, Content } = Layout;
@@ -33,10 +36,16 @@ export default function Lists() {
   const [search, setSearch] = useState('')
   const [sortName,setSortName] = useState('ASC')
   const debouncedSearchTerm = useDebounce(search,500)
+  const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() =>{
+    dispatch(fetchGroups());
+  },[])
 
   useEffect(() => {
     if(debouncedSearchTerm){
       dispatch(fetchUsers(sortName,debouncedSearchTerm))
+
     }else{
       dispatch(fetchUsers(sortName,''))
     }
@@ -67,6 +76,10 @@ export default function Lists() {
     setSortName(value)
   };
 
+  const showModal = () => {
+    setModalVisible(!modalVisible)
+  };
+  
   return (
     <Layout style={{height:"100vh"}}>
       <Sider theme="light" width="300" trigger={null} collapsible collapsed={collapsed}>
@@ -141,7 +154,6 @@ export default function Lists() {
             padding: "9px 10px 0px 10px",
             minHeight: 280,
             height:"500px",
-            overflow:"auto",
             overflow:"hidden"
           }}
         >
@@ -149,6 +161,14 @@ export default function Lists() {
           isLoading ? <Loader/> : body
         }
         </Content>
+        <PlusCircleOutlined 
+          className='add_users'
+          onClick={showModal}
+          />
+        <Madal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
       </Layout>
     </Layout>
   )

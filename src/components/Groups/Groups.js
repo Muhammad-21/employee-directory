@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react'
 import GroupTable from './GroupTable'
 import './groups.css';
-import { fetchGroups } from '../../../redux/actions/groupsAC';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function Groups({users}) {
   const groups = useSelector(({groups}) => groups.items);
-  const dispatch = useDispatch();
-console.log(users)
-  useEffect(() =>{
-    dispatch(fetchGroups());
-  })
+  
   return (
     <div style={{display:"flex",justifyContent:"space-between",marginRight:"10px"}}>
       {

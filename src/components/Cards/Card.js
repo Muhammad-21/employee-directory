@@ -1,6 +1,6 @@
 import React from 'react'
 import './cards.css'
-import ava7 from '../../../assets/img/ava1.jpg'
+import ava7 from '../../assets/img/ava1.jpg'
 
 export default function Card({data}) {
   return (

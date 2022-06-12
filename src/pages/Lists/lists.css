@@ -49,4 +49,19 @@
 
 }
 
+.add_users {
+    position: fixed;
+    display: absolute;
+    bottom:100px;
+    right:60px;
+    z-index: 1;
+    font-size: 60px;
+    background: #f7653b;
+    color: white;
+    border-radius: 100%;
+}
 
+.add_users:hover{
+  font-size: 80px;
+  cursor: pointer;
+}
