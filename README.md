@@ -17,7 +17,7 @@ Backend
 ## Installing
 ```sh
 > npm install
-> npm install backend/server
+backend/server> npm install
 > npm start
 starting the database
 > node backend/server/server.js
